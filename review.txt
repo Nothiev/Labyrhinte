@@ -1,0 +1,37 @@
+Votre code est facile à lire ce qui est une très bonne chose.
+
+On aurait apprécié l'encapsulation des coordonnées du joueur dans une structure.
+Une classe Joueur {
+    int latitude; int longitude;
+    enum Direction { HAUT, BAS, DROITE, GAUCHE };
+    void deplacer(Direction dir);
+}; aurait par exemple pu faciliter à bien visualiser le problème.
+
+De même on aurait pu encapsuler la logique liée au labyrinth
+class Labyrinthe {
+    vector<string> map;
+    const int WIDTH = 10;
+    const int HEUGHT = 5;
+    void chargerDepuisFichier(const string& cheminFichier);
+    void trouverEtInitialiserEntree();
+    void afficher();
+}
+
+Cela permet ensuite d'encapsuler votre logique dans des abstractions,
+par exemple la condition newX < 0 || newX >= WIDTH || newY < 0 || newY >= HEIGHT || labyrinthe[newY][newX] == '#'
+peut, avec les méthodes appropriées, devenir quelque chose comme
+labyrinth.estUneCasePossible(newX, newY)
+
+Encore une fois votre solution est claire et adaptée au problème (pas forcément besoin de tout abstraire si c'est déjà facilement compréhensible)
+
+Préférez les méthodes fournies avec les objets, par exemple
+labyrinthe.get(newY) plutot que labyrinthe[newY], en plus de s'assurer que l'objet est bien sensé pouvoir faire ce que vous voulez, cela abstrait la facon dont le calcul est fait et fournira un meilleur message d'erreur si besoin.
+
+Evitez les abbréviations dans les noms, dans votre code on ne peut pas savoir ce que représente playerX et playerY avant d'arriver à la fonction deplacer (du coup on se doute qu'il s'agit de sa latitude et longitude sur le graph).
+Vérifiez que vos fonctions font uniquement ce qu'elle prétent faire,
+par exemple ici la fonction deplacerJoueur se charge aussi de gérer la fin du jeu (puis la même logique est réécrite dans la fonction main)
+
+Vos fichiers de configuration laissent penser que vous devriez prendre le temps de bien comprendre à quoi tout cela correspond.
+ici la commande g++ Labyrinth.cpp est suffisante pour compiler le fichier en un executable. Une solution plus complexe s'apparente à de l'overkill.
+
+14/20

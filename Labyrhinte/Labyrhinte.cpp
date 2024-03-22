@@ -82,7 +82,7 @@ bool deplacerJoueur(Direction dir) {
 }
 
 int main() {
-   chargerLabyrintheDepuisFichier("C:\\Users\\arnau\\OneDrive\\Documents\\Labyrhinte\\labyrhinte.txt");
+   chargerLabyrintheDepuisFichier("../labyrhinte.txt");
     trouverEtInitialiserEntree();
 
     char input;
